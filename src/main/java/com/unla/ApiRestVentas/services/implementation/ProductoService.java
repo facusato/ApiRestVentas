@@ -25,10 +25,6 @@ public class ProductoService implements IProductoService {
 		return productoRepository.findAll();
 	}
 
-	
-	
-	
-	
 	@Override
 	public List<Producto> findByNombre(String nombre) {
 		int index=0;
@@ -36,7 +32,7 @@ public class ProductoService implements IProductoService {
 	   List<Producto> l=this.getAll();
 		while(index<l.size()) {
 			if(l.get(index).getNombre()==nombre) {
-				p.add(productoRepository.findByNombre(nombre));
+				p.add(productoRepository.findByNombre(l.get(index).getNombre()));
 			}
 			index++;
 		}
