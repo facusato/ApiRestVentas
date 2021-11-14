@@ -56,6 +56,16 @@ public class ProductoController {
 		return ResponseEntity.ok(v);
 	}
 	
+	@GetMapping("/nombre/{nombre}")
+	public ResponseEntity<List<Producto>> obtenerProductosPorNombre(@PathVariable("nombre") String nombre){
+		
+		List<Producto> v=productoService.findByNombre(nombre);
+		if(v.isEmpty()) {
+			ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(v);
+	}
+	
 	 @PostMapping()
 	 public ResponseEntity<Producto> insertarProducto( @RequestBody Producto producto, BindingResult result){
 	       

@@ -14,6 +14,8 @@ public interface IProductoRepository extends JpaRepository<Producto,Serializable
 	
 	public abstract Producto findByIdProducto(long idProducto);
 	
+	public abstract Producto findByNombre(String nombre);
+	
 	public List<Producto> findByVendedor(Vendedor vendedor);
 	
 	
