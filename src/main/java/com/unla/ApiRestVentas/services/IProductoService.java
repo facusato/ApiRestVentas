@@ -15,6 +15,8 @@ public interface IProductoService {
 		
 		public Producto findByIdProducto(long idProducto);
 		
+		public List<Producto> findByNombre(String nombre);
+		
 		public Producto insert(Producto producto);
 		
 		public Producto update(Producto producto);

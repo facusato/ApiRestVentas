@@ -1,5 +1,6 @@
 package com.unla.ApiRestVentas.services.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.unla.ApiRestVentas.entities.Producto;
 import com.unla.ApiRestVentas.entities.Vendedor;
 import com.unla.ApiRestVentas.repositories.IProductoRepository;
 import com.unla.ApiRestVentas.services.IProductoService;
+
 
 @Service("productoService")
 public class ProductoService implements IProductoService {
@@ -23,10 +25,25 @@ public class ProductoService implements IProductoService {
 		return productoRepository.findAll();
 	}
 
+	
+	
+	
+	
 	@Override
-	public Producto findByIdProducto(long idProducto) {
+	public List<Producto> findByNombre(String nombre) {
+		int index=0;
+		List<Producto> p= new ArrayList<Producto>();
+	   List<Producto> l=this.getAll();
+		while(index<l.size()) {
+			if(l.get(index).getNombre()==nombre) {
+				p.add(productoRepository.findByNombre(nombre));
+			}
+			index++;
+		}
 		
-		return productoRepository.findByIdProducto(idProducto);
+		
+		
+		return p;
 	}
 
 	@Override
@@ -69,6 +86,15 @@ public class ProductoService implements IProductoService {
         p.setStock(stockActualizado);
         return productoRepository.save(p);
     }
+
+
+
+
+
+	@Override
+	public Producto findByIdProducto(long idProducto) {
+		return productoRepository.findByIdProducto(idProducto);
+	}
 	
 
 }
