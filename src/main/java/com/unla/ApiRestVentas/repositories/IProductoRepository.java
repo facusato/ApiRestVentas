@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.unla.ApiRestVentas.entities.Producto;
 import com.unla.ApiRestVentas.entities.Vendedor;
 
+
 @Repository("productoRepository")
 public interface IProductoRepository extends JpaRepository<Producto,Serializable> {
 	
@@ -20,6 +21,7 @@ public interface IProductoRepository extends JpaRepository<Producto,Serializable
 	@Query("SELECT p FROM  Producto p WHERE p.nombre = (:nombre)")
 	public abstract List<Producto> findByNombre(String nombre);
 	
-	@Query("SELECT p FROM Producto p JOIN FETCH p.vendedor v WHERE v.idVendededor = (:idVendedor)")
+	@Query("SELECT p FROM Producto p JOIN FETCH p.vendedor v WHERE v.idVendedor= (:idVendedor)")
 	public abstract List<Producto> findByIdVendedor(long idVendedor);
+
 }
