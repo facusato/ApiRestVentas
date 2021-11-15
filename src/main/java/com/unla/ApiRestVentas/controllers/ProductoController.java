@@ -56,6 +56,17 @@ public class ProductoController {
 		return ResponseEntity.ok(v);
 	}
 	
+	
+	@GetMapping("/{idVendedor}")
+	public ResponseEntity<List<Producto>> obtenerProductoPorIdVendedor(@PathVariable("idVendedor") long idVendedor){
+		
+		List<Producto> p=productoService.findByIdVendedor(idVendedor);
+		if(p.isEmpty()) {
+			ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(p);
+	}
+	
 	@GetMapping("/nombre/{nombre}")
 	public ResponseEntity<List<Producto>> obtenerProductosPorNombre(@PathVariable("nombre") String nombre){
 		
