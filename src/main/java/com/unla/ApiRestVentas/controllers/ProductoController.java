@@ -98,7 +98,7 @@ public class ProductoController {
 	        vendedorActualizado.setPassword(producto.getVendedor().getPassword());
 	        vendedorActualizado.setApellido(producto.getVendedor().getApellido());
 	        vendedorActualizado.setDni(producto.getVendedor().getDni());
-	        vendedorActualizado.setVilletera(producto.getVendedor().getVilletera());
+	        vendedorActualizado.setBilletera(producto.getVendedor().getBilletera());
 	        vendedorService.update(vendedorActualizado);
 	        productoActualizado.setVendedor(vendedorActualizado);
 	        return ResponseEntity.ok(productoService.update(productoActualizado));

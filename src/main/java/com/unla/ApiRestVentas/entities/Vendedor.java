@@ -36,8 +36,8 @@ public class Vendedor {
 	
 	@Column(name="dni")
 	private long dni;
-	
-	@Column(name="villetera")
-	private double villetera;
+
+	@Column(name="Billetera")
+	private double Billetera;
 	
 }
