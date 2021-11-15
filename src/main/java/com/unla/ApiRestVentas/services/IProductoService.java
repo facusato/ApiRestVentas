@@ -12,6 +12,8 @@ public interface IProductoService {
 	    public List<Producto> getAll();
 	    
 	    public List<Producto> findByVendedor(Vendedor vendedor);
+	    
+	    public List<Producto> findByIdVendedor(long idVendedor);
 		
 		public Producto findByIdProducto(long idProducto);
 		

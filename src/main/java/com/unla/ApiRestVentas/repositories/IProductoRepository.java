@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.unla.ApiRestVentas.entities.Producto;
@@ -14,11 +15,11 @@ public interface IProductoRepository extends JpaRepository<Producto,Serializable
 	
 	public abstract Producto findByIdProducto(long idProducto);
 	
-	public abstract Producto findByNombre(String nombre);
+	public abstract List<Producto> findByVendedor(Vendedor vendedor);
 	
-	public List<Producto> findByVendedor(Vendedor vendedor);
+	@Query("SELECT p FROM  Producto p WHERE p.nombre = (:nombre)")
+	public abstract List<Producto> findByNombre(String nombre);
 	
-	
-	
-
+	@Query("SELECT p FROM Producto p JOIN FETCH p.vendedor v WHERE v.idVendededor = (:idVendedor)")
+	public abstract List<Producto> findByIdVendedor(long idVendedor);
 }
