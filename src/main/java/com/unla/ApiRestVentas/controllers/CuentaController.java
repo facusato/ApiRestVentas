@@ -71,7 +71,7 @@ public class CuentaController {
 	        vendedorActualizado.setPassword(cuenta.getVendedor().getPassword());
 	        vendedorActualizado.setApellido(cuenta.getVendedor().getApellido());
 	        vendedorActualizado.setDni(cuenta.getVendedor().getDni());
-	        vendedorActualizado.setVilletera(cuenta.getVendedor().getVilletera());
+	        vendedorActualizado.setBilletera(cuenta.getVendedor().getBilletera());
 	        vendedorService.update(vendedorActualizado);
 	        cuentaActualizada.setVendedor(vendedorActualizado);
 	        return ResponseEntity.ok(cuentaService.update(cuentaActualizada));

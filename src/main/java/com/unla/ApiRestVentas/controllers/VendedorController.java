@@ -55,7 +55,7 @@ public class VendedorController {
 	        vendedorActualizado.setNombre(vendedor.getNombre());
 	        vendedorActualizado.setApellido(vendedor.getApellido());
 	        vendedorActualizado.setDni(vendedor.getDni());
-	        vendedorActualizado.setVilletera(vendedor.getVilletera());
+	        vendedorActualizado.setBilletera(vendedor.getBilletera());
 	        return ResponseEntity.ok(vendedorService.update(vendedorActualizado));
 	    }
 	 
