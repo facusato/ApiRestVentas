@@ -40,12 +40,4 @@ public class Vendedor {
 	@Column(name="villetera")
 	private double villetera;
 	
-	/*
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="vendedor")
-	private Set<Cuenta> cuentas = new HashSet<Cuenta>();
-	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="vendedor")
-	private Set<Producto> productos = new HashSet<Producto>();
-	*/
-	
 }

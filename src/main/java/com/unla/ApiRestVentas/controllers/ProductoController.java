@@ -57,7 +57,7 @@ public class ProductoController {
 	}
 	
 	
-	@GetMapping("/{idVendedor}")
+	@GetMapping("/vendedor/{idVendedor}")
 	public ResponseEntity<List<Producto>> obtenerProductoPorIdVendedor(@PathVariable("idVendedor") long idVendedor){
 		
 		List<Producto> p=productoService.findByIdVendedor(idVendedor);
