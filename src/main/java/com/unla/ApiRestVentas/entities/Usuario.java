@@ -38,6 +38,8 @@ public class Usuario {
     @OneToOne
     @JoinColumn(name = "FK_VENDEDOR")
 	@Getter @Setter private Vendedor vendedor;
+    
+    
 
 
 }

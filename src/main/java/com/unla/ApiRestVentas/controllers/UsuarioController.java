@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.unla.ApiRestVentas.Client.ClienteClient;
 import com.unla.ApiRestVentas.entities.Usuario;
 import com.unla.ApiRestVentas.entities.Vendedor;
+import com.unla.ApiRestVentas.models.Cliente;
 import com.unla.ApiRestVentas.models.UsuarioVendedorDTO;
 import com.unla.ApiRestVentas.services.implementation.UsuarioService;
 import com.unla.ApiRestVentas.services.implementation.VendedorService;
@@ -33,6 +35,9 @@ public class UsuarioController {
 	
 	@Autowired
 	VendedorService vendedorService;
+	
+	@Autowired
+	ClienteClient clienteClient;
 
 	@GetMapping()
 	public ArrayList<Usuario> obtenerUsuarios() {
@@ -105,7 +110,13 @@ public class UsuarioController {
 	        u.setVendedor(v);
 		}
 		//implementar un rol cliente
-		
+		else {
+			Cliente cliente =new Cliente();
+			cliente.setNombre(dto.getNombre());
+			cliente.setApellido(dto.getApellido());
+	    	cliente.setDni(dto.getDni());
+	    	clienteClient.insertarCliente(cliente);
+		}
         u.setNombre(dto.getNombre());
         u.setApellido(dto.getApellido());
         u.setDni(dto.getDni());
