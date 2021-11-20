@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import com.unla.ApiRestVentas.services.implementation.CuentaService;
 import com.unla.ApiRestVentas.services.implementation.VendedorService;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/cuenta")
 public class CuentaController {
 	
@@ -67,8 +69,6 @@ public class CuentaController {
 	        cuentaActualizada.setMonto(cuenta.getMonto());
 	        Vendedor vendedorActualizado= vendedorService.findByIdVendedor(cuenta.getVendedor().getIdVendedor());
 	        vendedorActualizado.setNombre(cuenta.getVendedor().getNombre());
-	        vendedorActualizado.setUsuario(cuenta.getVendedor().getUsuario());
-	        vendedorActualizado.setPassword(cuenta.getVendedor().getPassword());
 	        vendedorActualizado.setApellido(cuenta.getVendedor().getApellido());
 	        vendedorActualizado.setDni(cuenta.getVendedor().getDni());
 	        vendedorActualizado.setBilletera(cuenta.getVendedor().getBilletera());

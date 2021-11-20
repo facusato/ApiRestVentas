@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import com.unla.ApiRestVentas.services.implementation.VendedorService;
 
 @RestController
 @RequestMapping("/producto")
+@CrossOrigin("*")
 public class ProductoController {
 	
 	@Autowired
@@ -77,6 +79,8 @@ public class ProductoController {
 		return ResponseEntity.ok(v);
 	}
 	
+	
+	
 	 @PostMapping()
 	 public ResponseEntity<Producto> insertarProducto( @RequestBody Producto producto, BindingResult result){
 	       
@@ -94,8 +98,6 @@ public class ProductoController {
 	        productoActualizado.setFormaDePago(producto.getFormaDePago());
 	        Vendedor vendedorActualizado= vendedorService.findByIdVendedor(producto.getVendedor().getIdVendedor());
 	        vendedorActualizado.setNombre(producto.getVendedor().getNombre());
-	        vendedorActualizado.setUsuario(producto.getVendedor().getUsuario());
-	        vendedorActualizado.setPassword(producto.getVendedor().getPassword());
 	        vendedorActualizado.setApellido(producto.getVendedor().getApellido());
 	        vendedorActualizado.setDni(producto.getVendedor().getDni());
 	        vendedorActualizado.setBilletera(producto.getVendedor().getBilletera());
