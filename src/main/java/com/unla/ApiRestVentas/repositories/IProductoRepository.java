@@ -1,6 +1,7 @@
 package com.unla.ApiRestVentas.repositories;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,5 +24,10 @@ public interface IProductoRepository extends JpaRepository<Producto,Serializable
 	
 	@Query("SELECT p FROM Producto p JOIN FETCH p.vendedor v WHERE v.idVendedor= (:idVendedor)")
 	public abstract List<Producto> findByIdVendedor(long idVendedor);
+	
+	//@Query("SELECT p FROM Producto p JOIN FETCH p.vendedor v WHERE v.productos.nombre= (:nombre)")
+	//public abstract ArrayList<Vendedor> findByNombreDelProducto(String nombre);
+	
+	
 
 }

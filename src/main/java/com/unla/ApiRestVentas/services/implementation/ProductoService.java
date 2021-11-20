@@ -2,6 +2,8 @@ package com.unla.ApiRestVentas.services.implementation;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -85,10 +87,17 @@ public class ProductoService implements IProductoService {
 
 
 
+
 	@Override
 	public List<Producto> findByIdVendedor(long idVendedor) {
 		return productoRepository.findByIdVendedor(idVendedor);
 	}
+	
+	  @Transactional
+	    public Producto addProduct(Vendedor vendedor, Producto producto) {
+	    	producto.setVendedor(vendedor); 
+	    	return productoRepository.save(producto);
+	    }
 	
 
 }

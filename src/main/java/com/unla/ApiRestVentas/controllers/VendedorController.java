@@ -6,19 +6,29 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import com.unla.ApiRestVentas.entities.Vendedor;
-import com.unla.ApiRestVentas.services.implementation.VendedorService;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.unla.ApiRestVentas.entities.Producto;
+import com.unla.ApiRestVentas.entities.Vendedor;
+import com.unla.ApiRestVentas.services.implementation.ProductoService;
+import com.unla.ApiRestVentas.services.implementation.VendedorService;
+import javax.transaction.Transactional;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/vendedor")
 public class VendedorController {
 	
 	@Autowired
 	@Qualifier("vendedorService")
 	VendedorService vendedorService;
+	
+	@Autowired
+	@Qualifier("productoService")
+	ProductoService productoService;
 	
 	
 	@GetMapping()
@@ -50,8 +60,6 @@ public class VendedorController {
 	 @PutMapping("/{idVendedor}")
 	    public ResponseEntity<Vendedor> actualizarVendedor(@PathVariable("idVendedor") Long idVendedor, @RequestBody Vendedor vendedor){
 		 	Vendedor vendedorActualizado= vendedorService.findByIdVendedor(idVendedor);
-	        vendedorActualizado.setUsuario(vendedor.getUsuario());
-	        vendedorActualizado.setPassword(vendedor.getPassword());
 	        vendedorActualizado.setNombre(vendedor.getNombre());
 	        vendedorActualizado.setApellido(vendedor.getApellido());
 	        vendedorActualizado.setDni(vendedor.getDni());
@@ -65,6 +73,23 @@ public class VendedorController {
 			return vendedorService.remove(idVendedor);
 		}
 	 
+	  @Transactional
+	    @PutMapping(path = "/prod/{vendedorID}") 
+	    public Producto createProductforVendedor(@PathVariable String vendedorID ,@RequestBody Producto producto) {
+	    	Vendedor vendedor = vendedorService.findByIdVendedor(Long.parseLong(vendedorID));
+	    	return productoService.addProduct(vendedor, producto);
+	    	
+	    }
+	  @GetMapping("/producto")
+	    public ArrayList<Vendedor> obtenerVendedorPorIdProducto(@RequestParam("id") Long id){
+	        return this.vendedorService.obtenerProductosPorVendedor(id);
+	    }
+
+	    @GetMapping("/productonombre")
+	    public ArrayList<Vendedor> obtenerVendedorPorNombreDeProducto(@RequestParam("nombre") String nombre){
+	    
+	        return this.vendedorService.obtenerPorNombreProducto(nombre);
+	    }
 	 
 
 }

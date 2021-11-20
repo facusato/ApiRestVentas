@@ -1,13 +1,18 @@
 package com.unla.ApiRestVentas.services.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.unla.ApiRestVentas.repositories.IProductoRepository;
 import com.unla.ApiRestVentas.repositories.IVendedorRepository;
 import com.unla.ApiRestVentas.services.IVendedorService;
+import com.unla.ApiRestVentas.entities.Producto;
 import com.unla.ApiRestVentas.entities.Vendedor;
 
 @Service("vendedorService")
@@ -16,6 +21,10 @@ public class VendedorService implements IVendedorService {
 	@Autowired
 	@Qualifier("vendedorRepository")
 	private IVendedorRepository vendedorRepository;
+	
+	@Autowired
+	@Qualifier("productoRepository")
+	private IProductoRepository productoRepository;
 	
 	@Override
 	public List<Vendedor> getAll() {
@@ -47,5 +56,22 @@ public class VendedorService implements IVendedorService {
 			return false;
 		}
 	}
+	
+	 public ArrayList<Vendedor>  obtenerProductosPorVendedor(long id) {
+	        return vendedorRepository.findByProductos_idProducto(id);
+	 }
+	 
+	    //Distintos
+	 public ArrayList<Vendedor>  obtenerPorNombreProducto(String nombre) {
+	    	
+	    	
+	        return vendedorRepository.findDistinctByProductos_nombre(nombre);
+	  }
+	   
+	 @Transactional
+	 public Vendedor addProducts(Vendedor vendedor, Producto producto) {
+	    	
+	    	return vendedorRepository.save(vendedor);
+	    }
 
 }
