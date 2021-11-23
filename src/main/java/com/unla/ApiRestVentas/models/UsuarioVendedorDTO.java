@@ -17,5 +17,6 @@ public class UsuarioVendedorDTO {
     @Getter @Setter private String nombre;
     @Getter @Setter private String apellido;
     @Getter @Setter private long dni;
+    @Getter @Setter private String domicilio;
 
 }

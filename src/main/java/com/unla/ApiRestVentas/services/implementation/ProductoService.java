@@ -1,5 +1,6 @@
 package com.unla.ApiRestVentas.services.implementation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -82,7 +83,19 @@ public class ProductoService implements IProductoService {
 
 	@Override
 	public List<Producto> findByNombre(String nombre) {
-		return productoRepository.findByNombre(nombre);
+		
+		int i=0;
+		List<Producto> p=productoRepository.findByNombre(nombre);
+		List<Producto> productos=new ArrayList<Producto>();
+		while(i<p.size()) {
+			if(p.get(i).getStock()>0) {
+			
+				productos.add(productoRepository.findByIdProducto(p.get(i).getIdProducto()));
+			}
+			i++;
+		}
+		
+		return productos ;
 	}
 
 

@@ -115,6 +115,7 @@ public class UsuarioController {
 			cliente.setNombre(dto.getNombre());
 			cliente.setApellido(dto.getApellido());
 	    	cliente.setDni(dto.getDni());
+	    	cliente.setDomicilio(dto.getDomicilio());
 	    	clienteClient.insertarCliente(cliente);
 		}
         u.setNombre(dto.getNombre());
